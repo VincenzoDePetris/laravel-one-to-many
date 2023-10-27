@@ -12,6 +12,7 @@
       <tr>
         <th scope="col">Id</th>
         <th scope="col">Title</th>
+        <th scope="col">Categoria</th>
         <th scope="col">Description</th>
         <th scope="col">Dettaglio</th>
         <th scope="col">Modifica</th>
@@ -23,6 +24,7 @@
       <tr>
         <th scope="row">{{ $work->id }} </th>
         <td>{{ $work->title }} </td>
+        <td>{!! $work->getCategoryBadge() !!}</td>
         <td>{{ $work->description }} </td>
         <td><a href="{{ route('admin.works.show', $work ) }}">Detail</a> </td>
         <td><a href="{{ route('admin.works.edit', $work) }}">Modifica</a></td>

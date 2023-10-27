@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 use App\Models\Work;
+use App\Models\Category;
 
 class WorkController extends Controller
 {
@@ -18,7 +19,8 @@ class WorkController extends Controller
             'title' => 'required|string|max:20',
             'link' => "required|string",
             "description" => "required|string",
-            "slug" => "nullable|string"
+            "slug" => "nullable|string",
+            "category_id" => "nullable|integer",
           ],
           [
             'title.required' => 'Il titolo è obbligatorio',
@@ -31,7 +33,9 @@ class WorkController extends Controller
             'description.required' => 'La descrizione è obbligatoria',
             'description.string' => 'La descrizione deve essere una stringa',
 
-            'slug.string' => 'Lo slug deve essere una stringa'
+            'slug.string' => 'Lo slug deve essere una stringa',
+
+            'category_id.exist' => 'La categoria inserita non è valida' 
             
           ]
         )->validate();
@@ -56,7 +60,8 @@ class WorkController extends Controller
      */
     public function create()
     {
-        return view('admin.works.create');
+        $categories = Category::all();
+        return view('admin.works.create', compact('categories'));
     }
 
     /**
@@ -93,7 +98,8 @@ class WorkController extends Controller
      */
     public function edit(Work $work)
     {
-        return view('admin.works.edit', compact('work'));
+        $categories = Category::all();
+        return view('admin.works.edit', compact('work', 'categories'));
     }
 
     /**

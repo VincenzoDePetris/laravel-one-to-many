@@ -19,6 +19,14 @@
     <label for="title" class="form-label">Titolo</label>
     <input type="text" class="form-control" id="title" name="title" />
 
+    <label for="category_id" class="form-label">Categoria</label>
+    <select name="category_id" id="category_id" class="form-select">
+      <option value="">Non categorizzato</option>
+      @foreach($categories as $category)
+      <option value="{{ $category->id }}">{{ $category->label }}</option>
+      @endforeach
+    </select>
+
     <label for="link" class="form-label">Link</label>
     <input type="text" class="form-control" id="link" name="link" />
 

@@ -25,6 +25,15 @@
       value="{{ $work->title }}"
     />
 
+
+    <label for="category_id" class="form-label">Categoria</label>
+    <select name="category_id" id="category_id" class="form-select">
+      <option value="">Non categorizzato</option>
+      @foreach($categories as $category)
+      <option value="{{ $category->id }}" @if (old('category_id') ?? $work->category_id == $category->id) selected @endif>{{ $category->label }}</option>
+      @endforeach
+    </select>
+
     <label for="link" class="form-label">Link</label>
     <input
       type="text"
